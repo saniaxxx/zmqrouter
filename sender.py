@@ -1,6 +1,6 @@
 import time
 import zmq
-from converter import dict_to_binary,binary_to_dict
+from converter import pack_message
 import time
 
 context = zmq.Context()
@@ -13,8 +13,7 @@ reqs = 0
 while True:
     reqs = reqs + 1
     print('Req #%d sent..' % (reqs))
-    message = {"message":reqs,"to":'receiver'}
-    socket.send(dict_to_binary(message))
+    socket.send(pack_message("receiver",reqs))
     time.sleep(1)
 
 socket.close()

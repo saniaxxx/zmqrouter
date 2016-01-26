@@ -1,6 +1,5 @@
 import time
 import zmq
-from converter import binary_to_dict
 import time
 
 context = zmq.Context()
@@ -11,7 +10,7 @@ socket.connect('ipc://router')
 print('Client %s started' % (identity))
 while True:
     msg = socket.recv()
-    print('Client received: %s' % binary_to_dict(msg))
+    print('Client received: %s' % msg)
 
 socket.close()
 context.term()
